@@ -20,7 +20,7 @@ def main():
             line = line.split(',')
             ID = line[0]
             drug = line[3]
-            cost = int(line[-1])
+            cost = float(line[-1])
             if drug not in d:
                 d[drug]= [[],0]
             if ID not in d[drug][0]:
