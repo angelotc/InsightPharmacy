@@ -1,10 +1,12 @@
 
 import sys
 import os
-from pathlib import Path
+
 
 def main():
-    input_path = Path(sys.argv[1])
+
+    input_path = os.path.join(os.path.dirname(__file__), sys.argv[1])
+    input_path = os.path.abspath(os.path.realpath(input_path))
     print(input_path)
     d = {}
     with open(input_path,"r+") as inpFile:
@@ -16,7 +18,6 @@ def main():
             #Format each line
             line = line.replace("\n", "")
             line = line.split(',')
-            print(line)
             ID = line[0]
             drug = line[3]
             cost = float(line[-1])
@@ -35,7 +36,9 @@ def main():
 
     # Create new file, and write
 
-    output_path = Path(sys.argv[2])
+    output_path = os.path.join(os.path.dirname(__file__), sys.argv[2])
+    output_path = os.path.abspath(os.path.realpath(output_path))
+    
     with open(output_path,'w+') as outFile:
         header = "drug_name,num_prescriber,total_cost\n"
         outFile.write(header)
